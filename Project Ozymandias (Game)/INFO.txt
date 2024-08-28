@@ -1,6 +1,6 @@
 The code from Project Ozymandias is not displayed on this portfolio.
 
-This is due to many API's being present in the code, also this was a project made by two people, so not all the code was created by me.
+This is due to many API keys being present in the code, also this was a project made by two people, so not all the code was created by me.
 
 Included is a code snippet section, displaying some of the code written by me.
 
