@@ -5,3 +5,22 @@ This is due to many API's being present in the code, also this was a project mad
 Included is a code snippet section, displaying some of the code written by me.
 
 Also, a trailer created for the Games Fleadh 2024 competition is included. The trailer was limited to only 90 seconds.
+
+SYNOPSIS
+===========
+“Project Ozymandias” is set during the 70’s in the remnants of a Cold-war underground American facility, when it reopens after an accident causing it to close for almost 6 years. The player plays an entity which somehow has the power to control technology but has no physical body. You start with nothing, but the overall objective of the game is to build yourself a body to escape the facility in, while uncovering secrets which explain who you are, how you have the power to control technology and what Project Ozymandias is.
+
+
+GAMEPLAY
+===========
+The game is split into two major parts, the first part is about building your body, and the second part is using the body to escape. At the beginning of the game, you start with nothing, however you can hack one robot to start getting more power. To build your body, you have to gather resources. These resources, however, cannot be gathered by the player, instead, you must hack the robots that roam around the facility, and force them to gather them for you. With these resources, you can unlock skill points, upgrade your robots and finally, build yourself weapons and tools to use during your escape. This part of the game plays much like a business simulator, where you have to manage your robots.
+
+The second part of the game is about escaping the facility, using the upgrades you built for your body during the first part of the game. Some of the upgrades and tools you can unlock for your body are rocket boots, an assault rifle, a pistol, a wind cannon, a black hole launcher, a grapple hook, and almost 10 others. However, it is only possible to bring in 6 upgrades, so each playthrough can have endless combinations of weapons. You have to battle your way through the facility, killing or incapacitating the enemies which stand in your way, once you reach the end, there are three different endings which depend on how you escaped.
+
+AWARDS
+===========
+This Project was entered into the Games Fleadh 2024, here is was awarded "Best in use of physics algorithms" and was also commended for use of artificial intelligence.
+
+TEAM MEMBERS
+===========
+Jamie Boylan and Dylan Boylan.
