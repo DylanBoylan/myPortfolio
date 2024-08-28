@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Update Booking</title>
+    <link rel="stylesheet" href="resources/CSS/updateBooking.css"/>
+    <link rel="icon" href="resources/images/fevicon.ico" type="image/x-icon"/>
+</h:head>
+<body>
+    <h:form>
+        <!-- Navigation Buttons -->
+        <div class="top-buttons">
+            <a href="customer.xhtml" class="button">Home</a> 
+        </div>
+
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Update Your Booking</h1>
+        </div>
+
+        <!-- Update Booking Form -->
+        <div class="form-container">
+            <h2>Modify Your Booking</h2>
+
+            <!-- Parking Space Selection -->
+            <div class="form-group">
+                <label>Parking Space:</label>
+                <p:selectOneMenu id="ParkingSpace" value="#{bookingBean.selectedID}" required = "true">
+                    <f:selectItems value="#{bookingBean.parkingSpaces}" 
+                        var="space" 
+                        itemValue="#{space.id}" 
+                        itemLabel="#{space.id}"/>
+                </p:selectOneMenu>
+            </div>
+
+            <!-- Arrival Date Selection -->
+            <div class="form-group">
+                <h:outputLabel for="startDate" value="Arrival Date:"/>
+                <p:calendar id="startDate" value="#{bookingBean.startDate}" required="true" requiredMessage="Start date required"/>
+            </div>
+
+            <!-- Departure Date Selection -->
+            <div class="form-group">
+                <h:outputLabel for="endDate" value="Departure Date:"/>
+                <p:calendar id="endDate" value="#{bookingBean.endDate}" required="true" requiredMessage="End date required"/>
+            </div>
+           
+            <!-- Update Button -->
+            <div class="form-group">
+                <p:commandButton value="Update Booking" action="#{bookingBean.updateBooking}" styleClass="update-button" ajax="false"/>
+            </div>
+
+        </div>
+    </h:form>
+</body>
+</html>

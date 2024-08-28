@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ABC Management Dashboard</title>
+    <link rel="stylesheet" href="resources/CSS/home.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+    <link rel="icon" href="resources/images/fevicon.ico" type="image/x-icon"/>
+</h:head>
+<h:body>
+
+    <!-- Main Form with growl inside -->
+    <h:form id="managementDashboardForm">
+        <p:growl id="growl" showDetail="true" />
+
+        <div class="video-background">
+            <video autoplay="autoplay" muted="muted" loop="loop" id="background-video">
+                <source src="resources/videos/vid.mp4" type="video/mp4"/>
+            </video>
+            <div class="overlay-content">
+                <div class="header centered-logo">
+                    <img src="resources/images/logo.jpg" alt="ABC Logo" class="logo"/>
+                </div>
+                <div class="top-buttons">
+                    <p:commandButton value="Logout" type="button"
+                        icon="pi pi-external-link" styleClass="button" onclick="PF('dlg2').show()" />
+
+                    <p:dialog header="Logout confirmation" widgetVar="dlg2" minHeight="40" width="350"
+                        showEffect="fade" focus="btnYes" closeOnEscape="true">
+                        <p class="m-0">Are you sure you want to Logout?</p>
+                        <f:facet name="footer">
+                            <p:commandButton type="button" value="No"
+                                styleClass="button" style="width: 6rem" onclick="PF('dlg2').hide()" />
+                            <p:commandButton id="btnYes" value="Yes"
+                                style="width: 6rem" styleClass="button"
+                                action="#{manageBean.logout}" update="growl" />
+                        </f:facet>
+                    </p:dialog>
+                </div>
+                <div class="main-content">
+                    <h1 style="font-size: 50px;">Welcome to Your Dashboard</h1>
+                    <p><b>Manage your parking spaces efficiently.</b></p>
+                    <div class="action-links">
+                        <a href="monitorSpaces.xhtml" class="action-link"><b>Monitor Parking Spaces</b></a>
+                        <a href="createNewMember.xhtml" class="action-link"><b>Create New Member Account</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+    <div class="detailed-info">
+        <div class="latest-news">
+            <h2>Operation Hours :</h2>
+            <p> Sunday    :   24 hours<br/>
+                Monday    :   24 hours<br/>
+                Tuesday   :   24 hours<br/>
+                Wednesday :   24 hours<br/>
+                Thursday  :   24 hours<br/>
+                Friday    :   24 hours<br/>
+                Saturday  :   24 hours<br/><br/></p>
+            <h2>About Space :</h2>
+            <p>ABC Airport Parking is conveniently located in a safe location. Please arrive at ABC Airport Parking 10 minutes prior to when you want to be at your airport terminal. Pull up in front of the office to check-in your car with the attendant. Free shuttle service every 2 to 10 minutes. You don't have to take the train to get picked up or dropped off. We go directly to the terminals A, B, and C. We have the best service in airport parking. Additional charges may be applicable for oversized vehicles. This discounted internet rate is exclusive with Way.com. Please do not ask for staff to match this online rate. You WILL be charged the full drive-up rate upon entry, which may cost 25%-40% more.<br/><br/></p>
+            <h2>Shuttle Information :</h2>
+            <p>The shuttle service is available 24/7. Free shuttle service every 2 to 10 minutes. You don't have to take the train to get picked up or dropped off. We go directly to the terminals A, B, and C.<br/><br/></p>
+            <h2>Cancellation Policy :</h2>
+            <p>Flexible. You can cancel the parking reservation any time before the check-in time for a full refund.<br/><br/></p>
+        </div>
+    </div>
+    <footer>
+        <p>Contact Information: support@abcparking.com</p>
+    </footer>
+
+</h:body>
+</html>

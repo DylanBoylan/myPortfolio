@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" href="resources/CSS/cancelBooking.css" />
+	<link rel="icon" href="resources/images/fevicon.ico"
+		type="image/x-icon" />
+</h:head>
+<h:body>
+	<h:form id="form">
+		<p:growl id="growl" showDetail="true" />
+		<div class="top-buttons">
+			<p:commandButton value="Home" action="customer?faces-redirect=true"
+				icon="pi pi-home" styleClass="button" />
+		</div>
+		<div class="card">
+			<p:dataTable id="basicDT" var="booking" value="#{bookingBean.bookingsInUse}" showGridlines="true">
+				<p:column headerText="Parking ID">
+					<h:outputText value="#{bookingBean.selectedID}" />
+				</p:column>
+
+				<p:column headerText="Accessible">
+					<h:outputText value="#{bookingBean.selectedSpace.accessible ? 'Yes' : 'No'}" />
+				</p:column>
+
+				<p:column headerText="Start">
+					<h:outputText value="#{bookingBean.getBookingStartDate(bookingBean.selectedID)}" />
+				</p:column>
+
+				<p:column headerText="End">
+					<h:outputText value="#{bookingBean.getBookingEndDate(bookingBean.selectedID)}" />
+				</p:column>
+				
+				<p:column headerText="Payment Method">
+					<h:outputText value="#{bookingBean.paymentMethod}" />
+				</p:column>
+				
+				<p:column headerText="€">
+                    <h:outputText value="#{bookingBean.selectedSpace.price}" />
+                </p:column>
+
+				<p:column style="width:3rem;text-align: center">
+					<p:commandButton icon="pi pi-trash" id="cancelButton" 
+						onclick="PF('cancelConfirmation').show()" title="Cancel Booking"
+						styleClass="icon" />
+				</p:column>
+			</p:dataTable>
+			<p:dialog header="Cancel Booking?" widgetVar="cancelConfirmation"
+				minHeight="40" width="350" showEffect="fade" focus="cancelYesButton"
+				closeOnEscape="true">
+				<p class="m-0">Are you sure you want to cancel this booking?</p>
+				<f:facet name="footer">
+					<p:commandButton  value="No" style="width: 6rem"
+						onclick="PF('cancelConfirmation').hide()" styleClass="button" />
+					<p:commandButton id="cancelYesButton" value="Yes"
+						style="width: 6rem" styleClass="button" action="#{bookingBean.cancelBooking}" update="basicDT" ajax="false" />
+				</f:facet>
+			</p:dialog>
+		</div>
+	</h:form>
+</h:body>
+</html>

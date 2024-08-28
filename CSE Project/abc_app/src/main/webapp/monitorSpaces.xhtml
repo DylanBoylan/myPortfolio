@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Monitor Parking Spaces</title>
+    <link rel="stylesheet" href="resources/CSS/monitorSpaces.css"/>
+    <link rel="icon" href="resources/images/fevicon.ico" type="image/x-icon"/>
+</head>
+<body>
+    <!-- Navigation Buttons -->
+    <div class="top-buttons">
+        <h:link outcome="home.xhtml" value="Home" styleClass="button"/>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Monitor Parking Spaces</h1>
+
+        <!-- Parking Spaces Table -->
+        <div class="table-container">
+            <h2>Parking Spaces Overview</h2>
+            <h:dataTable value="#{bookingBean.parkingSpacesInUse}" var="space" border="1" cellpadding="10" style="width: 100%;">
+                <h:column>
+                    <f:facet name="header">User Name</f:facet>
+                    <h:outputText value="#{space.userName != null ? space.userName : 'Not Assigned'}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Parking ID</f:facet>
+                    <h:outputText value="#{space.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Arrival</f:facet>
+                    <h:outputText value="#{bookingBean.getBookingStartDate(space.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Departure</f:facet>
+                    <h:outputText value="#{bookingBean.getBookingEndDate(space.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    <h:outputText value="#{space.price}"/>
+                </h:column>
+            </h:dataTable>
+            <h:dataTable value="#{parkingManageBean.reservedCompanySpaces}" var="companySpace" border="1" cellpadding="10" style="width: 100%;">
+                <h:column>
+                    <f:facet name="header">Company Name</f:facet>
+                    <h:outputText value="#{companySpace.company != null ? companySpace.company : 'Not Assigned'}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Parking ID</f:facet>
+                    <h:outputText value="#{companySpace.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Arrival</f:facet>
+                    <h:outputText value="N/A"/> <!-- You may want to handle arrival and departure for companies differently -->
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Departure</f:facet>
+                    <h:outputText value="N/A"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    <h:outputText value="#{companySpace.price}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:panelGroup rendered="#{empty bookingBean.parkingSpaces and empty parkingManageBean.reservedCompanySpaces}">
+                <p>Currently 0 bookings.</p>
+            </h:panelGroup>
+        </div>
+    </div>
+</body>
+</html>
+           

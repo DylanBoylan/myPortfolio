@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Create a New Member User</title>
+    <link rel="stylesheet" href="resources/CSS/createMemberUser.css"/>
+    <link rel="icon" href="resources/images/fevicon.ico" type="image/x-icon"/>
+</head>
+<body>
+    <div class="top-buttons">
+        <a href="home.xhtml" class="button">Home</a> 
+    </div>
+    <div class="container">
+    
+        <h1>Create a New Member User</h1>
+        <h:messages globalOnly="true" style="color: red;" />
+        <div class="form-container">
+            <h2>Enter User Details</h2>
+            <h:form action="successMemberCreated.html" method="post">
+                <div class="form-group">
+                    <h:inputText id="username" 
+                                 value="#{registrationBean.newMember.username}" 
+                                 required="true" 
+                                 requiredMessage="Username is required" 
+                                 maxlength="12">
+                        <f:passThroughAttribute name="placeholder" value="Username (Maximum 12 characters) *"/>
+                    </h:inputText>
+                </div>
+                
+                <div class="form-group">
+                    <h:inputSecret id="password" 
+                                   value="#{registrationBean.newMember.password}" 
+                                   required="true" 
+                                   requiredMessage="Password is required">
+                        <f:passThroughAttribute name="placeholder" value="Create a password (At least 1 uppercase and 1 special character) *"/>
+                        <f:validateRegex pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+                    </h:inputSecret>
+                </div>
+                
+                <div class="form-group">
+           	 		<h:commandButton value="Register Now" 
+           	 						 action="#{registrationBean.registerMember}" 
+           	 						 styleClass="submit-button" 
+           	 						 ajax="false"/>
+                </div>
+                
+                <div id="message" class="message">
+                </div>
+            </h:form>
+        </div>
+    </div>
+</body>
+</html>

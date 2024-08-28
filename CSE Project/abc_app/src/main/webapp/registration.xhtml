@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABC Registration</title>
+    <link rel="stylesheet" href="resources/CSS/registration.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap;" rel="stylesheet" />
+    <link rel="icon" href="resources/images/fevicon.ico" type="image/x-icon" />
+</h:head>
+<h:body>
+    <div class="slideshow">
+        <div class="slides">
+            <img src="resources/images/image1.jpg" alt="Slide 1" />
+            <img src="resources/images/image2.jpg" alt="Slide 2" />
+            <img src="resources/images/image3.jpg" alt="Slide 3" />
+        </div>
+        <div class="overlay">
+            <div class="top-buttons">
+                <a href="about.html" class="button">About the Company</a>
+                <a href="login.xhtml" class="button">Login</a>
+            </div>
+            <img src="resources/images/logo.jpg" alt="ABC Logo" class="logo" />
+            <h1>Discover your space at Airside Business Campus now!</h1>
+        </div>
+    </div>
+    <div class="form-section">
+        <h2 class="prompt">Enter your details</h2>
+        <h:form action="login.xhtml" method="post" class="registration-form">
+            <h:messages/>
+            <h:inputText id="first-name" value="#{registrationBean.user.firstName}" required="true" requiredMessage="First Name is required">
+                <f:passThroughAttribute name="placeholder" value="First Name *" />
+            </h:inputText>
+            <h:inputText id="last-name" value="#{registrationBean.user.lastName}" required="true" requiredMessage="Last Name is required">
+                <f:passThroughAttribute name="placeholder" value="Last Name *" />
+            </h:inputText>
+            <h:inputText id="phone" value="#{registrationBean.user.phone}" required="true" requiredMessage="Phone Number is required">
+                <f:passThroughAttribute name="placeholder" value="Phone Number *" />
+            </h:inputText>
+            <h:inputText id="email" value="#{registrationBean.user.email}" required="true" requiredMessage="Email Address is required">
+                <f:passThroughAttribute name="placeholder" value="Email Address *" />
+            </h:inputText>
+            <h:inputText id="username" value="#{registrationBean.user.username}" required="true" requiredMessage="Username is required" maxlength="12">
+                <f:passThroughAttribute name="placeholder" value="Username (Maximum 12 characters) *" />
+            </h:inputText>
+            <h:inputSecret id="password" value="#{registrationBean.user.password}" required="true" requiredMessage="Password is required">
+                <f:passThroughAttribute name="placeholder" value="Create a password (At least 1 uppercase and 1 special character) *" />
+                <f:validateRegex pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+            </h:inputSecret>
+            <h:inputSecret id="confirmPassword" value="#{registrationBean.confirmPassword}" required="true" requiredMessage="Confirm Password is required">
+                <f:passThroughAttribute name="placeholder" value="Confirm Password *"/>
+            </h:inputSecret>
+            <label><input type="checkbox" name="terms" required="required" /> I agree to the <a href="terms.html" target="_blank">Terms and Conditions *</a></label>
+            <h:commandButton value="Register Now" action="#{registrationBean.register}" styleClass="regbutton" ajax="false"/>
+        </h:form> 
+    </div>
+    <footer>
+        <p>Contact Information: support@abcparking.com</p>
+    </footer>
+</h:body>
+</html>

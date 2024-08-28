@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Parking Management</title>
+    <link rel="stylesheet" href="resources/CSS/setPricing.css"/>
+    <link rel="icon" href="resources/images/favicon.ico" type="image/x-icon"/>
+</h:head>
+<body>
+    <h:form id="parkingForm">
+        <p:growl id="messages" showDetail="true" life="3000"/>
+
+        <div class="main-container">
+        
+       		 <div class="top-buttons">
+                <a href="member.xhtml" class="button">Home</a> 
+            </div>
+            
+            <div class="header">
+                <h2>All Parking Spaces </h2>
+            </div>
+
+            <div class="parking-container">
+		   <ui:repeat value="#{parkingManageBean.parkingSpacesForLoggedInUser}" var="space" varStatus="status">
+		    <h:panelGroup id="panelGroup#{status.index}" layout="block">
+		        <div class="parking-section">
+		            <h3>#{space.id} - #{space.company} (#{space.status ? 'Reserved' : 'Open'})</h3>
+		            <div class="price-input">
+		                <span>€</span>
+		                <p:inputText id="priceInput#{status.index}" value="#{space.price}" disabled="#{space.status}" />
+		            </div>
+		            <p:commandButton id="setPriceBtn#{status.index}" value="Set Price"
+		                             actionListener="#{parkingManageBean.updatePrice(space.id, space.price)}"
+		                             update="@all" 
+		                             oncomplete="handleComplete(#{space.price})"/>
+		        </div>
+		    </h:panelGroup>
+		</ui:repeat>
+            </div>
+        </div>
+
+        <h:outputScript>
+            function handleComplete(price) {
+                PF('messages').renderMessage({
+                    summary: 'Success',
+                    detail: 'Price is set to €' + price,
+                    severity: 'info'
+                });
+            }
+        </h:outputScript>
+    </h:form>
+</body>
+</html>

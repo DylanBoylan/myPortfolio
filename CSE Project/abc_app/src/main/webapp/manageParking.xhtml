@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Parking Management</title>
+    <link rel="stylesheet" href="resources/CSS/manageParking.css"/>
+    <link rel="icon" href="resources/images/fevicon.ico" type="image/x-icon"/>
+</h:head>
+<body>
+    <h:form id="parkingForm">
+        <!-- Growl for displaying messages -->
+        <p:growl id="messages" showDetail="true" />
+
+        <div class="main-container">
+            <div class="top-buttons">
+			   <a href="member.xhtml" class="button">Home</a> 
+            </div>
+
+            <div class="content-wrapper">
+                <div class="header">
+                    All Parking Spaces
+                </div>
+
+                <div class="parking-container">
+                    <div class="parking-section">
+                        <b>Reserved Spaces</b>
+                        <ul class="parking-list">
+                            <ui:repeat value="#{parkingManageBean.reservedSpaces}" var="space">
+                                <li>
+                                    <p:commandLink value="id: #{space.id} price: #{space.price}" process="@this">
+                                        <f:setPropertyActionListener target="#{parkingManageBean.selectedSpaceId}" value="#{space.id}" />
+                                        <f:ajax render="@form" onevent="openDialog"/>
+                                    </p:commandLink>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                    
+                    <div class="parking-section">
+                        <b>Open For Booking</b>
+                        <ul class="parking-list">
+                            <ui:repeat value="#{parkingManageBean.openForBookingSpaces}" var="space">
+                                <li>
+                                    <p:commandLink value="id: #{space.id} price: #{space.price}" process="@this">
+                                        <f:setPropertyActionListener target="#{parkingManageBean.selectedSpaceId}" value="#{space.id}" />
+                                        <f:ajax render="@form" onevent="openDialog"/>
+                                    </p:commandLink>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+	 <p:dialog id="dlg" header="Update Parking Space" widgetVar="dlg" modal="true" resizable="false">
+			    <h:panelGrid id="dialogContent" columns="1" cellpadding="5">
+			        <div style="margin-bottom: 10px;">
+			            <h:selectOneRadio value="#{parkingManageBean.selectedStatus}">
+			                <f:selectItem itemLabel="Reserve for Staff" itemValue="staff"/>
+			                <f:selectItem itemLabel="Open for Booking" itemValue="booking"/>
+			            </h:selectOneRadio>
+			        </div>
+			        <p:commandButton value="Confirm" action="#{parkingManageBean.updateParkingSpace}" update="parkingForm messages" oncomplete="PF('dlg').hide();" />
+			    </h:panelGrid>
+		</p:dialog>
+
+
+
+
+        <!-- script to open dialog on click -->
+        <h:outputScript>
+            function openDialog(data) {
+                if (data.status === 'success') {
+                    PF('dlg').show();
+                }
+            }
+        </h:outputScript>
+    </h:form>
+</body>
+</html>
